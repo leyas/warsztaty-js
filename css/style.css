@@ -1,0 +1,25 @@
+
+nav {
+  text-align: center;
+}
+
+label {
+  display: block;
+}
+
+.main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+div#books div {
+    background-color: #aaaaaa;
+    padding: 20px;
+    margin: 10px;
+}
+
+footer {
+  background-color: #222;
+  text-align: center;
+  margin:0;
+}
