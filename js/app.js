@@ -1,23 +1,37 @@
-function first(){
+$('document').ready(function(){
+  getAllBooks();
+
+  $('#books').on('click', 'li', function(){
+    $(this).next().slideToggle();
+  });
+});
+
+function getBook(id){
   $.ajax({
-      url: 'http://date.jsontest.com',
+      url: 'http://localhost:8282/books'+'/'+id,
       type: 'GET',
       dataType: 'json'
-  }).done(function (result) {
-      console.log(result.data);
-      console.log(result.milliseconds_since_epoch);
-      console.log(result.time);
+  }).done(function (book) {
+    console.log(book);
+      // showMore(book);
   });
 }
 
-function second(){
+function getAllBooks(){
   $.ajax({
-      url: 'https://swapi.co/api/people/4/',
+      url: 'http://localhost:8282/books',
       type: 'GET',
       dataType: 'json'
-  }).done(function (result) {
-      console.log(result);
+  }).done(function (books) {
+      display(books);
   });
 }
 
-second();
+function display(books){
+  var ul = $('#books');
+  for(var i = 0; i < books.length; i++){
+    var newLi = $('<li>').text(books[i].title).attr('data-id', books[i].id);
+    var newDiv = $('<div>').text(books[i].author + books[i].publisher).attr('data-id', books[i].id).hide();
+    ul.append(newLi).append(newDiv);
+  }
+}
